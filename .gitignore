@@ -1,0 +1,12 @@
+
+# Ignore auto generated folder
+.ipynb_checkpoints/
+
+# Ignore zip file of data
+archive.zip
+
+
+__pycache__/
+
+# Ignore csv file 
+data/
