@@ -69,6 +69,12 @@ def predict( user_input: CustomerData ):
             "probability" : float(  prob_churn_yes)
             } 
 
+
+@app.post("/test")
+def say_hello( user_input: str ):
+    return "Hey there"
+
+
 customer_data = {
     "SeniorCitizen": 0,
     "Partner": "Yes",
