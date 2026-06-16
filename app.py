@@ -4,6 +4,8 @@ import pandas as pd
 
 from fastapi import FastAPI
 
+import mlflow
+
 model = joblib.load('model.pkl')
 scaler = joblib.load('scaler.pkl')
 feature_columns = joblib.load('feature_columns.pkl')
@@ -64,15 +66,17 @@ def predict( user_input: CustomerData ):
     _, prob_churn_yes  = model.predict_proba(data_scaled)[0]
 
     churned = "No" if ( prob_churn_yes < 0.5 ) else "Yes"
-
+    with mlflow.start_run():
+        mlflow.log_param("Churned", churned )
+        mlflow.log_param("Contract", user_input.Contract )
+        mlflow.log_metric("Probability", prob_churn_yes)
+        mlflow.log_metric("Monthly Charges", user_input.MonthlyCharges )
+        mlflow.log_metric("Total Charges", user_input.TotalCharges)
     return {"churned" :  churned,
             "probability" : float(  prob_churn_yes)
             } 
 
 
-@app.post("/test")
-def say_hello( user_input: str ):
-    return "Hey there"
 
 
 customer_data = {
