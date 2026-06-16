@@ -66,7 +66,7 @@ def predict( user_input: CustomerData ):
     churned = "No" if ( prob_churn_yes < 0.5 ) else "Yes"
 
     return {"churned" :  churned,
-            "probability" : 100 * prob_churn_yes
+            "probability" : float(  prob_churn_yes)
             } 
 
 customer_data = {
