@@ -61,11 +61,13 @@ def pre_processing( user_input: CustomerData ):
 def predict( user_input: CustomerData ):
     data_scaled = pre_processing(user_input)
 
-    prob_churn_no, prob_churn_yes  = model.predict_proba(data_scaled)[0]
+    _, prob_churn_yes  = model.predict_proba(data_scaled)[0]
 
     churned = "No" if ( prob_churn_yes < 0.5 ) else "Yes"
 
-    return {"churned" : churned } # აქ რაღაც უნდა გავასწორო
+    return {"churned" :  churned,
+            "probability" : 100 * prob_churn_yes
+            } 
 
 customer_data = {
     "SeniorCitizen": 0,
