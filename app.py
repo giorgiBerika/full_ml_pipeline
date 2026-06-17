@@ -79,26 +79,3 @@ def predict( user_input: CustomerData ):
 
 
 
-customer_data = {
-    "SeniorCitizen": 0,
-    "Partner": "Yes",
-    "Dependents": "No",
-    "tenure": 24,
-    "PhoneService": "Yes",
-    "MultipleLines": "No",
-    "InternetService": "Fiber optic",
-    "OnlineSecurity": "Yes",
-    "OnlineBackup": "No",
-    "DeviceProtection": "Yes",
-    "TechSupport": "No",
-    "StreamingTV": "Yes",
-    "StreamingMovies": "Yes",
-    "Contract": "Two year",
-    "PaperlessBilling": "Yes",
-    "PaymentMethod": "Electronic check",
-    "MonthlyCharges": 89.75,
-    "TotalCharges": 120.5
-}
-
-user = CustomerData(**customer_data)
-print(pre_processing(user))
